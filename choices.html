@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+		<link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+		
 		<link rel = "stylesheet" href="css/choices.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 		<script src="script.js"></script>
@@ -13,10 +15,15 @@
 		
 		<img src="images/owl.jpg" id = "guide" alt="guide"/>
 		
-		<div id = "ribbon-and-text">
-			<p>Financial Advisor</p>
+		<p id = "ribbon-and-text">Financial Advisor</p>
+		<img src="images/ribbon-and-text.png" id ="ribbon-advisor"/>
+		
+		<div id = "ribbon-and-balance">
+			<p>Balance:</p>
 		</div>
+		
 		<div id="everything">
+			<img src="images/speechbubble.png" id = "speech-bubble"/>
 			<p id ="question" alt="question"></p>
 			
 			<p id = "blurb"></p>
@@ -25,9 +32,7 @@
 			<button id = "bubble1" class = "choice" onclick="makeAction(1)"></button>
 			<button id = "bubble2" class = "choice" onclick="makeAction(2)"></button>
 		</div>
-		<div id = "ribbon-and-balance">
-			<p>Balance</p>
-		</div>
+		
 		
 		
 	</body>
