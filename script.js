@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 	createAccountAndCustomer();
-	window.location.replace("genderchoice.html");
+	//window.location.replace("genderchoice.html");
 });
 
 
@@ -20,13 +20,14 @@ var occupationTree = {
 	},
 	"medicine": {
 		"salary": 250000,
+		"salary": 250000,
 		"loans": 100000
 	},
 }
 
 var decisionTree = [
-	[["7%", .07],["10%", .1],["15", .15],["How much of your monthly paycheck would you like to spend (not including housing and loans)?", "blurb0"], true]]
-	[["$500", 500], [$1000,1000], ["$2500", 2500], ["How much would you like to apply towards your college loan this month?", "blurb1"], false],
+	[["7%", .07],["10%", .1],["15", .15],["How much of your monthly paycheck would you like to spend (not including housing and loans)?", "blurb0"], true],
+	[["$500", 500], ["$1000",1000], ["$2500", 2500], ["How much would you like to apply towards your college loan this month?", "blurb1"], false],
 	[["Walking distance", 1000],["A bus ride away", 900],["A train ride away", 850],["How close would you like to live from your work?", "blurb2"], false],
 ];
 
@@ -45,7 +46,7 @@ var startingMoney = 0;
 var balance = startingMoney;
 var remainingCollegeLoan;
 var salary;
-var salaryMultiplier = 0.77;
+var multiplier = 0.77;
 var spending = 0;
 
 function generateUserAccountId(){
@@ -210,9 +211,10 @@ function makeDeposit(amount, description){
 
 function makeAction(numberClicked){
 	var actOn = decisionTree[currentQuestion];
+	console.log(actOn);
 	if(actOn[4]){
-		makeDeposit(salary*multiplier*(1-actOn[numberClicked][1]), actOn[3])
-		spending += salary*multiplier*actOn[numberClicked][1];
+		makeDeposit((salary)*(multiplier)*(1-actOn[numberClicked][1]), actOn[3]);
+		spending += (salary)*(multiplier)*(actOn[numberClicked][1]);
 		balance 
 	}
 	else{
@@ -226,18 +228,18 @@ function makeAction(numberClicked){
 	else{
 		finish();
 	}
-)
+}
 
 function writeQuestion(){
-	document.getElementById('question').value = decisionTree[currentQuestion][3][0];
-	document.getElementById('blurb').value = decisionTree[currentQuestion][3][1];
+	document.getElementById('question').innerHTML = decisionTree[currentQuestion][3][0];
+	document.getElementById('blurb').innerHTML = decisionTree[currentQuestion][3][1];
 	for(var i = 0; i<3; i++){
-		document.getElementById('bubble' + i).value = decisionTree[currentQuestion][i][0];
+		document.getElementById('bubble' + i).innerHTML = decisionTree[currentQuestion][i][0];
 	}
 }
 
 function finish(){
-	document.getElementById("everything").value = '<p>You have completed the game. You spent $' + spending + 'and have $' + balance + ' remaining.</p>'  + 
+	document.getElementById("everything").innerHTML = '<p>You have completed the game. You spent $' + spending + 'and have $' + balance + ' remaining.</p>'  + 
 	'<p>Your annual salary was $' + (salary*multiplier) + ' and have $' + loans + 'remaining</p>' +
 	'<p>We hope this game has encouraged you to think about your choices and spending, as well as the impact it has on your financial situation.</p>';
 }
@@ -246,7 +248,7 @@ function careerChoice(career){
 	salary = occupationTree[career]['salary'];
 	loans = occupationTree[career]['salary'];
 	window.location.replace("choice.html");
-	makeAction(currentQuestion);
+	writeQuestion();
 }
 
 function genderSubmit(gender){
