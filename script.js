@@ -4,16 +4,17 @@ $(document).ready(function() {
 });
 
 
+
 var apikey = 'db8ac95e83b2dee47c29879b2f23d8ae';
 var playerInfo = {
 	playerFirstName: "John",
-	playerLastName: "Doe",
+	playerLastName: "Doe"
 }
 var custId = '56c66be6a73e49274150758c';
 var userAccountId = generateUserAccountId();
 var userAccount;
 var startingMoney = 0;
-
+var balance = startingMoney;
 
 function generateUserAccountId(){
 	var id = "";
@@ -23,6 +24,7 @@ function generateUserAccountId(){
 	console.log(id);
 	return id;
 }
+
 
 function createAccountAndCustomer(){
 	var accountDetails = {
@@ -53,20 +55,15 @@ function createAccountAndCustomer(){
 				console.log("New ID" + accounts);
 				userAccountId = accounts[accounts.length-1]["_id"];
 				console.log(userAccountId);
+				makePurchase(16, "urmom");
 			},
 			error: function (errormessage) {
 				console.log(errormessage);
+				console.log("urmom");
 				//do something else
 
-		}
-			});
-
-			/*request.complete(function(results) {
-				accounts = results.responseJSON;
-				userAccountId = accounts[accounts.length-1];
-				console.log(userAccountId);
-			});
-			return accounts;*/
+			}
+		});
 		},
 		error: function (errormessage) {
 			console.log(errormessage);
@@ -80,12 +77,13 @@ function getAccount(){
 	console.log("Getting account");
 	$.ajax({
 		url: "http://api.reimaginebanking.com/accounts/" + userAccountId + "?key=" + apikey,
-		data: 'key=db8ac95e83b2dee47c29879b2f23d8ae',
+		//data: 'key=db8ac95e83b2dee47c29879b2f23d8ae',
 		async: false,
 		dataType: 'json',
 		success: function (msg) {
 		   console.log("Got Account")
 		   console.log(msg);
+		   userAccount = msg;
 		},
 		error: function (errormessage) {
 			console.log(errormessage);
@@ -94,8 +92,15 @@ function getAccount(){
 		}
 	});
 }
+
+function getBalance(){
+	getAccount();
+	balance = userAccount["balance"];
+	console.log(balance);
+	return balance;
+}
 	
-function makeWithdrawal(account, withdrawal, amount, description){
+function makeWithdrawal(amount, description){
 	console.log("Creating Withdrawal");
 	$.ajax({
 		url: "http://api.reimaginebanking.com/accounts/" + userAccountId + "/withdrawals?key=" + apikey,
@@ -120,6 +125,32 @@ function makeWithdrawal(account, withdrawal, amount, description){
 	});
 }
 
+function makePurchase(amount, description){
+	console.log("Creating Purchase");
+	//console.log(userAccountId);
+	$.ajax({
+		url: "http://api.reimaginebanking.com/accounts/" + userAccountId + "/purchases?key=" + apikey,
+		type: "POST",
+		data: JSON.stringify({
+		  "merchant_id": "56c66be6a73e492741507624",
+		  "medium": "balance",
+		  "purchase_date": "2016-04-03",
+		  "amount": amount,
+		  "status": "pending",
+		  "description": description
+		}),
+		contentType: "application/json",
+		dataType: "json",
+		success: function (msg) {
+		   console.log(msg);
+		},
+		error: function (errormessage) {
+			console.log(errormessage);
+			//do something else
+		}
+    });
+}
+
 function makeDeposit(amount, description){
 	console.log("Creating Deposit");
 	console.log(userAccountId);
@@ -136,7 +167,6 @@ function makeDeposit(amount, description){
 		contentType: "application/json",
 		dataType: "json",
 		success: function (msg) {
-		   console.log("Deposit Created")
 		   console.log(msg);
 		},
 		error: function (errormessage) {
