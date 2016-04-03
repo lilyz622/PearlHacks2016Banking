@@ -242,7 +242,14 @@ function writeQuestion(){
 }
 
 function finish(){
-	document.getElementById("everything").innerHTML = '<p>You have completed the game. You spent $' + spending + ' and have $' + balance + ' remaining.</p>'  + 
+	var remainder =  Math.floor(((salary*multiplier)/12)-spending);
+	if(remainder<0){
+		remainder = "-$" + Math.abs(remainder);
+	}
+	else{
+		remainder = "$" + remainder;
+	}
+	document.getElementById("everything").innerHTML = '<p>You have completed the game. You spent $' + spending + ' and have ' + remainder + ' remaining for this month.</p>'  + 
 	'<p>Your annual salary was $' + (salary*multiplier) + ' and have $' + Math.floor((remainingCollegeLoan*1.05)) + ' left of your college loan.</p>' +
 	'<p>We hope this game has encouraged you to think about your choices and spending, as well as the impact it has on your financial situation.</p>';
 }
