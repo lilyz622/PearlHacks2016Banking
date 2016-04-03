@@ -24,7 +24,7 @@ var occupationTree = {
 }
 
 var decisionTree = [
-	[["7%", .07],["10%", .1],["15", .15],["How much of your monthly paycheck would you like to spend on food and furniture?", "Make sure to spend enough that you live comfortably."], true],
+	[["7%", .07],["10%", .1],["15%", .15],["How much of your monthly paycheck would you like to spend on food and furniture?", "Make sure to spend enough that you live comfortably."], true],
 	[["$500", 500], ["$1000",1000], ["$2500", 2500], ["How much would you like to apply towards your college loan this month?", "The less your pay on your loan now, the more interest you'll need to pay later."], false],
 	[["An apartment near my work", 1000],["A townhouse in biking distance from my work", 900],["An apartment far from my work", 850],["Where would you like to live?", "The closer you are to work, the higher your rent and the cheaper your transportation costs."], false],
 ];
@@ -86,11 +86,9 @@ function createAccountAndCustomer(){
 				console.log("New ID" + accounts);
 				userAccountId = accounts[accounts.length-1]["_id"];
 				console.log(userAccountId);
-				makeDeposit(10, "Allowance");
 			},
 			error: function (errormessage) {
 				console.log(errormessage);
-				console.log("urmom");
 				//do something else
 
 			}
