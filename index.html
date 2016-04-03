@@ -3,15 +3,18 @@
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
-		<!--link rel = "stylesheet" href="css/choices.css">
-		<link rel = "stylesheet" href="css/genderChoice.css">
-		<link rel = "stylesheet" href="css/careerChoice.css"-->
+		
+		<link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+		<!--<link rel = "stylesheet" href="css/genderChoice.css">
+		<link rel = "stylesheet" href="css/choices.css">
+		<link rel = "stylesheet" href="css/careerChoice.css">-->
+		<link rel = "stylesheet" href ="css/master.css">
 		<!--script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script-->
 		<script src="script.js"></script>
 	</head>
 	<body>
 		<div data-role="page" id="genderChoice">
-			<img id = "avatar" src = "images/demoavatarfemale.jpg" alt = "avatar"/>
+			<img id = "avatar" src = "images/demoavatar.png" alt = "avatar"/>
 			<h1 class = "logo">MAKE <img id = "letter-b" src="images/demobitcoin.jpg" alt="B" align = "middle" width="90">ANK</h1>
 			<p id = "selection">I AM A ...</p>
 			<button class = "gender" onclick="genderSubmit('OTHER')">Other</button>
@@ -20,13 +23,13 @@
 	
 		</div>
 		<div data-role="page" id="careerChoice">
-			<h2>CAREERS</h2>
-			<p id = 'blurb'>Information about each career</p>
+			<h2 class ="careersm">CAREERS</h2>
+			<p id="descriptionm" class ="blurbm">Note that higher paying careers come with more student loans.</p>
 			<div data-role="content">
-				<button class="option" class = "gender" onClick = "careerChoice('arts')">Arts</button></br>
-				<button class="option" onClick = "careerChoice('education')">Education</button></br>
-				<button class="option" onClick = "careerChoice('engineering')">Engineering</button></br>
-				<button class="option" onClick = "careerChoice('medicine')">Medicine</button></br>
+				<button class="optionm" onClick = "careerChoice('arts')">Arts</button></br>
+				<button class="optionm" onClick = "careerChoice('education')">Education</button></br>
+				<button class="optionm" onClick = "careerChoice('engineering')">Engineering</button></br>
+				<button class="optionm" onClick = "careerChoice('medicine')">Medicine</button></br>
 			</div>
 		</div>
 		<div data-role="page" id="choice">
@@ -40,16 +43,16 @@
 			<img src="images/ribbon-and-text.png" id ="ribbon-advisor"/>
 			
 			<div id = "ribbon-and-balance">
-				<button onclick="restart()">Start Over</button>
+				<button onclick="restart()" class="restart">Start Over</button>
 			</div>
 			
 			<div id="everything">
-			<img src="images/speechbubble.png" id = "speech-bubble"/>
+			<img src="images/speechbubble.png" id = "speech-bubble" class ="speech-bubblen"/>
 			<p id ="blurb"></p>
-			<p id ="question" alt="question"></p>	
-				<button id = "bubble0" class = "gender" onclick="makeAction(0)"></button></br>
-				<button id = "bubble1" class = "choice" onclick="makeAction(1)"></button></br>
-				<button id = "bubble2" class = "choice" onclick="makeAction(2)"></button></br>
+			<p id ="question" alt="question" class="questionn"></p>	
+				<button id = "bubble0" class = "choicen" class="bubble0n" onclick="makeAction(0)"></button>
+				<button id = "bubble1" class = "choicen" onclick="makeAction(1)"></button>
+				<button id = "bubble2" class = "choicen" onclick="makeAction(2)"></button>
 			</div>
 		</div>
 	</body>

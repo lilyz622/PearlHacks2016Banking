@@ -1,4 +1,4 @@
-body {
+/*body {
 	font-family: 'Josefin Sans', sans-serif;
 	margin: 0 auto;
 	overflow: hidden;
@@ -10,7 +10,7 @@ html, body {
 	margin: 0 auto;
 	height: 100%;
 }
-
+*/
 
 #guide{
 	position: absolute;
@@ -41,7 +41,11 @@ html, body {
 	
 }
 
-#question {
+.bubble0n{
+	margin-left:200px;
+}
+
+.questionn {
 	position: absolute;
     font-size: 25px;
     margin-top: 50px;
@@ -51,7 +55,7 @@ html, body {
     vertical-align: middle;
 }
 
-#speech-bubble{
+.speech-bubblen{
 	position: absolute;
     width: 420px;
     height: 350px;
@@ -59,7 +63,7 @@ html, body {
     margin-top: -10px;
 }
 
-.choice{
+.choicen{
 	width: 200px;
     height: 75px;
     background-color: rgb(204,124,56);
@@ -85,9 +89,6 @@ html, body {
 	font-size:40px;
 }
 
-#bubble0{
-	margin-left:200px;
-}
 
 
 

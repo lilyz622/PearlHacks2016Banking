@@ -1,0 +1,173 @@
+/*-------------------------------*/ /*gender choice*/ /*-------------------------------------*/
+body {
+	font-family: 'Josefin Sans', sans-serif;
+	margin: 0 auto;
+	overflow: hidden;
+	width: 1200px;
+	height: 100%;
+}
+
+html, body {
+	margin: 0 auto;
+	height: 100%;
+}
+
+
+.logo {
+	text-align: right;
+    font-size: 60px;
+    margin: 10% 20% 50px auto;
+}
+
+#letter-b {
+	width: 50px;
+	vertical-align: middle;
+}
+
+#selection {
+	text-align: right;
+	font-size: 50px;
+	margin: auto 30% 50px auto;
+}
+
+#avatar{
+	width: 380px;
+	float: left;
+	margin: 30px 0px auto 120px;
+}
+
+.gender {
+	float:right;
+	font-size: 30px;
+	width: 180px;
+	height: 50px;
+	border-style: solid;
+	text-align: center;
+	border-color: black;
+	margin-right: 10px;
+	margin-left: 10px;
+	padding: 0 0 0 0;
+	font-family:inherit;
+	
+}
+
+
+
+/*-------------------------------*/ /*career choices*/ /*-------------------------------------*/
+
+.optionm {
+	width: 400px;
+    margin-top: 20px;
+    height: 60px;
+    margin-left: 125px;
+    font-size: 30px;
+    font-family: inherit;
+    background-color: rgb(204,124,56);
+    padding: 0px;
+    border-style: solid;
+    border-color: black;
+}
+	
+
+.careersm {
+	margin-left: 200px;
+    margin-top: 100px;
+    font-size: 50px;
+}
+
+.blurbm{
+	float: right;
+    font-size: 30px;
+    margin-right: 100px;
+    text-align: left;
+    width: 400px;
+}
+
+/*-------------------------------*/ /*choices*/ /*-------------------------------------*/
+#guide{
+	position: absolute;
+	margin-top: 140px;
+	margin-left: 130px;
+	width: 200px;
+	z-index:0;
+}
+
+#ribbon-and-text{
+	position: absolute;
+	margin-top: 300px;
+	margin-left: 130px;
+	text-align:center;
+	width: 200px;
+	height: 50px;
+	font-size: 20px;
+	font-weight: bolder;
+	z-index: 2;
+}
+
+#ribbon-advisor{
+	position: absolute;
+	margin-top: 230px;
+	margin-left: 80px;
+	width: 300px;
+	z-index: 1;
+	
+}
+
+#bubble0{
+	margin-left:100px;
+}
+
+.questionn {
+	position: absolute;
+    font-size: 25px;
+    margin-top: 15px;
+    margin-left: 367px;
+    width: 280px;
+    height: 125px;
+    vertical-align: middle;
+}
+
+.speech-bubblen{
+	position: absolute;
+    width: 420px;
+    height: 350px;
+    margin-left: 300px;
+    margin-top: -10px;
+}
+
+.choicen{
+	width: 250px;
+    height: 75px;
+    background-color: rgb(204,124,56);
+	outline-style:solid;
+	outline-color:black;
+    margin-left: 60px;
+    margin-right: 60px;
+	margin-top: 420px;
+	padding: 0px;
+	font-size: 25px;
+	text-decoration: none;
+	font-family: inherit;
+}
+
+#ribbon-and-balance{
+	position: absolute;
+    margin-top: 100px;
+    margin-left: 860px;
+    z-index: 4;
+}
+
+#ribbon-and-balance p{
+	font-size:40px;
+}
+
+.restart{
+    margin-left: -50px;
+    margin-top: 140px;
+    font-style: inherit;
+    width: 200px;
+    height: 60px;
+    font-size: 30px;
+	
+	
+}

@@ -1,4 +1,4 @@
-body {
+/*body {
 	font-family: 'Josefin Sans', sans-serif;
 	margin: 0 auto;
 	overflow: hidden;
@@ -9,9 +9,9 @@ body {
 html, body {
 	margin: 0 auto;
 	height: 100%;
-}
+}*/
 
-button {
+.optionm {
 	width: 400px;
     margin-top: 20px;
     height: 60px;
@@ -25,13 +25,13 @@ button {
 }
 	
 
-h2 {
+.careersm {
 	margin-left: 200px;
     margin-top: 100px;
     font-size: 50px;
 }
 
-#blurb{
+#blurbm{
 	float: right;
     font-size: 30px;
     margin-right: 100px;

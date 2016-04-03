@@ -23,7 +23,7 @@ html, body {
 	vertical-align: middle;
 }
 
-p {
+#selection {
 	text-align: right;
 	font-size: 50px;
 	margin: auto 30% 50px auto;
@@ -49,10 +49,5 @@ p {
 	
 }
 
-.choice{
-	width: 180px;
-    height: 70px;
-    background-color: rgb(151,86,50);
-}
 
 
