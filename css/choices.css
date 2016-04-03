@@ -11,6 +11,13 @@ html, body {
 }
 
 
+#guide{
+	position: absolute;
+	margin-top: 110px;
+	margin-left: 110px;
+	width: 200px;
+}
+/*
 #question {
 	text-align: right;
     font-size: 20px;
@@ -46,3 +53,4 @@ p {
 	
 }
 
+*/
