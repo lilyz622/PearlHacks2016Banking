@@ -1,7 +1,5 @@
-
 $(document).ready(function() {
-	createAccountAndCustomer();
-	//window.location.replace("genderchoice.html");
+	reset();
 });
 
 
@@ -26,9 +24,9 @@ var occupationTree = {
 }
 
 var decisionTree = [
-	[["7%", .07],["10%", .1],["15", .15],["How much of your monthly paycheck would you like to spend (not including housing and loans)?", "blurb0"], true],
-	[["$500", 500], ["$1000",1000], ["$2500", 2500], ["How much would you like to apply towards your college loan this month?", "blurb1"], false],
-	[["Walking distance", 1000],["A bus ride away", 900],["A train ride away", 850],["How close would you like to live from your work?", "blurb2"], false],
+	[["7%", .07],["10%", .1],["15", .15],["How much of your monthly paycheck would you like to spend on food and furniture?", "Make sure to spend enough that you live comfortably."], true],
+	[["$500", 500], ["$1000",1000], ["$2500", 2500], ["How much would you like to apply towards your college loan this month?", "The less your pay on your loan now, the more interest you'll need to pay later."], false],
+	[["An apartment near my work", 1000],["A townhouse in biking distance from my work", 900],["An apartment far from my work", 850],["Where would you like to live?", "The closer you are to work, the higher your rent and the cheaper your transportation costs."], false],
 ];
 
 
@@ -45,7 +43,7 @@ var userAccount;
 var startingMoney = 0;
 var balance = startingMoney;
 var remainingCollegeLoan;
-var salary;
+var salary = 0;
 var multiplier = 0.77;
 var spending = 0;
 
@@ -88,7 +86,7 @@ function createAccountAndCustomer(){
 				console.log("New ID" + accounts);
 				userAccountId = accounts[accounts.length-1]["_id"];
 				console.log(userAccountId);
-				makePurchase(16, "urmom");
+				makeDeposit(10, "Allowance");
 			},
 			error: function (errormessage) {
 				console.log(errormessage);
@@ -141,7 +139,7 @@ function makeWithdrawal(amount, description){
 		data: JSON.stringify({
 			"medium": "balance",
 			"transaction_date": "2016-04-02",
-			"status": "pending",
+			"status": "completed",
 			"amount": amount,
 			"description": description
 		}),
@@ -169,7 +167,7 @@ function makePurchase(amount, description){
 		  "medium": "balance",
 		  "purchase_date": "2016-04-03",
 		  "amount": amount,
-		  "status": "pending",
+		  "status": "completed",
 		  "description": description
 		}),
 		contentType: "application/json",
@@ -193,7 +191,7 @@ function makeDeposit(amount, description){
 		data: JSON.stringify({
 			"medium": "balance",
 			"transaction_date": "2016-04-02",
-			"status": "pending",
+			"status": "completed",
 			"amount": amount,
 			"description": description
 		}),
@@ -213,20 +211,27 @@ function makeAction(numberClicked){
 	var actOn = decisionTree[currentQuestion];
 	console.log(actOn);
 	if(actOn[4]){
-		makeDeposit((salary)*(multiplier)*(1-actOn[numberClicked][1]), actOn[3]);
-		spending += (salary)*(multiplier)*(actOn[numberClicked][1]);
-		balance 
+		var salaryMult = Math.floor((salary)*(multiplier));
+		makeWithdrawal(Math.floor(salaryMult*(actOn[numberClicked][1])), actOn[3]);
+		spending += Math.floor(salaryMult*(multiplier)*(actOn[numberClicked][1]));
+		balance -= Math.floor(salaryMult*(multiplier))*(actOn[numberClicked][1]);
 	}
 	else{
 		makePurchase(actOn[numberClicked][1], actOn[3])
 		spending += actOn[numberClicked][1]
+		balance -= actOn[numberClicked][1];
+		if(currentQuestion == 1){
+			remainingCollegeLoan -= actOn[numberClicked][1];
+		}
 	}
 	currentQuestion +=1;
 	if(currentQuestion < decisionTree.length){
 		writeQuestion();
 	}
 	else{
+		console.log("Finished");
 		finish();
+		getBalance();
 	}
 }
 
@@ -239,15 +244,18 @@ function writeQuestion(){
 }
 
 function finish(){
-	document.getElementById("everything").innerHTML = '<p>You have completed the game. You spent $' + spending + 'and have $' + balance + ' remaining.</p>'  + 
-	'<p>Your annual salary was $' + (salary*multiplier) + ' and have $' + loans + 'remaining</p>' +
+	document.getElementById("everything").innerHTML = '<p>You have completed the game. You spent $' + spending + ' and have $' + balance + ' remaining.</p>'  + 
+	'<p>Your annual salary was $' + (salary*multiplier) + ' and have $' + Math.floor((remainingCollegeLoan*1.05)) + ' left of your college loan.</p>' +
 	'<p>We hope this game has encouraged you to think about your choices and spending, as well as the impact it has on your financial situation.</p>';
 }
 
 function careerChoice(career){
 	salary = occupationTree[career]['salary'];
-	loans = occupationTree[career]['salary'];
-	window.location.replace("choice.html");
+	remainingCollegeLoan = occupationTree[career]['loans'];
+	makeDeposit(salary, "paycheck");
+	balance += Math.floor((salary)*(multiplier));
+	$("#careerChoice").hide();
+	$("#choice").show();
 	writeQuestion();
 }
 
@@ -261,7 +269,16 @@ function genderSubmit(gender){
 	else{
 		multiplier = .6
 	}
-	window.location.replace("careerchoice.html");
+	$("#genderChoice").hide();
+	$("#careerChoice").show();
 	
-
+}
+function reset(){
+	createAccountAndCustomer();
+	$("#choice").hide();
+	$("#careerChoice").hide();
+	$("#genderChoice").show();
+}
+function restart(){
+	window.location = "index.html";
 }
