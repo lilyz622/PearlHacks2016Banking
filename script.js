@@ -1,10 +1,7 @@
 
 $(document).ready(function() {
 	createAccountAndCustomer();
-});
-
-$(male).submit(function() {
-	multiplier = 1;
+	window.location.replace("genderchoice.html");
 });
 
 
@@ -28,9 +25,9 @@ var occupationTree = {
 }
 
 var decisionTree = [
-	[["7%", .07],["10%", .1],["15", .15],"How much of your monthly paycheck would you like to spend (not including housing and loans)?", true]]
-	[["$500", 500], [$1000,1000], ["$2500", 2500], "How much would you like to apply towards your college loan this month?", false],
-	[["Walking distance", 1000],["A bus ride away", 900],["A train ride away", 850],"How close would you like to live from your work?", false],
+	[["7%", .07],["10%", .1],["15", .15],["How much of your monthly paycheck would you like to spend (not including housing and loans)?", "blurb0"], true]]
+	[["$500", 500], [$1000,1000], ["$2500", 2500], ["How much would you like to apply towards your college loan this month?", "blurb1"], false],
+	[["Walking distance", 1000],["A bus ride away", 900],["A train ride away", 850],["How close would you like to live from your work?", "blurb2"], false],
 ];
 
 
@@ -232,7 +229,8 @@ function makeAction(numberClicked){
 )
 
 function writeQuestion(){
-	document.getElementById('question').value = decisionTree[currentQuestion][3];
+	document.getElementById('question').value = decisionTree[currentQuestion][3][0];
+	document.getElementById('blurb').value = decisionTree[currentQuestion][3][1];
 	for(var i = 0; i<3; i++){
 		document.getElementById('bubble' + i).value = decisionTree[currentQuestion][i][0];
 	}
@@ -247,4 +245,21 @@ function finish(){
 function careerChoice(career){
 	salary = occupationTree[career]['salary'];
 	loans = occupationTree[career]['salary'];
+	window.location.replace("choice.html");
+	makeAction(currentQuestion);
+}
+
+function genderSubmit(gender){
+	if(gender == "MALE"){
+		multiplier = 1;
+	}
+	else if(gender == "FEMALE"){
+		multiplier = .77;
+	}
+	else{
+		multiplier = .6
+	}
+	window.location.replace("careerchoice.html");
+	
+
 }
