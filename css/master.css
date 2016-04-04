@@ -19,6 +19,12 @@ html, body {
     margin: 10% 20% 50px auto;
 }
 
+.links {
+	position:relative;    
+	margin-top: 30px;
+    margin-left: 0px;
+}
+
 #letter-b {
 	width: 50px;
 	vertical-align: middle;

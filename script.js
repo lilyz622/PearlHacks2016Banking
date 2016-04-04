@@ -18,7 +18,6 @@ var occupationTree = {
 	},
 	"medicine": {
 		"salary": 250000,
-		"salary": 250000,
 		"loans": 100000
 	},
 }

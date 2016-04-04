@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Log In</title>
+</head>
+
+<body>
+
+	<h1>Log In</h1>
+
+<form name="loginform">
+
+  Username:<br>
+  <input type="text" name="firstname"><br>
+  Password:<br>
+	<input name="passwordtext" type="password"><br>
+	<input type="button" size="" value="Submit" onClick='redirect()'  />
+
+<script type="text/javascript">
+
+function redirect() { 
+if (document.loginform.passwordtext.value=="asdf") {
+ document.location.href="success.html";
+ } else {
+ document.location.href="login.html";
+ };
+ }
+ 
+</script>
+
+
+</form>
+
+
+</form>
+
+
+</body>
+</html>
